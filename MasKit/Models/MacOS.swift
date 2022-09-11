@@ -8,6 +8,10 @@
 
 /// Model representing macOS installers, used by the `os` command.
 enum MacOS: CaseIterable {
+    case ventura
+    case monterey
+    case bigSur
+    case catalina
     case mojave
     case highSierra
     case sierra
@@ -18,6 +22,10 @@ enum MacOS: CaseIterable {
     /// MAS identifier for the installer app.
     var identifier: UInt64 {
         switch self {
+        case .ventura return 0
+        case .monterey return 1_576_738_294
+        case .bigSur return 1_398_502_828
+        case .catalina return 1_466_841_314
         case .mojave: return 1_398_502_828
         case .highSierra: return 1_246_284_741
         case .sierra: return 1_127_487_414
@@ -30,6 +38,10 @@ enum MacOS: CaseIterable {
     /// Display name
     var name: String {
         switch self {
+        case .ventura: return "Ventura"
+        case .monterey: return "Monterey"
+        case .bigSur: return "Big Sur"
+        case .catalina: return "Catalina"
         case .mojave: return "Mojave"
         case .highSierra: return "High Sierra"
         case .sierra: return "Sierra"
@@ -42,8 +54,10 @@ enum MacOS: CaseIterable {
     /// Installer store name
     var installerName: String {
         switch self {
-        case .mojave, .highSierra, .sierra: return "Install macOS \(name)"
-        case .elCapitan, .yosemite, .mavericks: return "Install OS X \(name)"
+        case .ventura, .monterey, .bigSur, .catalina, .mojave, .highSierra, .sierra:
+            return "Install macOS \(name)"
+        case .elCapitan, .yosemite, .mavericks:
+            return "Install OS X \(name)"
         }
     }
 
@@ -53,6 +67,10 @@ enum MacOS: CaseIterable {
     /// Bundle identifier
     var bundleIdentifier: String {
         switch self {
+        case .ventura: return "\(MacOS.bundleIdentifierBase).Ventura" // UNCONFIRMED
+        case .monterey: return "\(MacOS.bundleIdentifierBase).Monterey" // UNCONFIRMED
+        case .bigSur: return "\(MacOS.bundleIdentifierBase).BigSur" // UNCONFIRMED
+        case .catalina: return "\(MacOS.bundleIdentifierBase).Catalina" // UNCONFIRMED
         case .mojave: return "\(MacOS.bundleIdentifierBase).Mojave"
         case .highSierra: return "\(MacOS.bundleIdentifierBase).HighSierra"
         case .sierra: return "\(MacOS.bundleIdentifierBase).Sierra" // UNCONFIRMED
@@ -65,6 +83,10 @@ enum MacOS: CaseIterable {
     /// Token for use with commands.
     var token: String {
         switch self {
+        case .ventura: return "macos-ventura"
+        case .monterey: return "macos-monterey"
+        case .bigSur: return "macos-bigsur"
+        case .catalina: return "macos-catalina"
         case .mojave: return "macos-mojave"
         case .highSierra: return "macos-high-sierra"
         case .sierra: return "macos-sierra"
@@ -76,6 +98,10 @@ enum MacOS: CaseIterable {
 
     var altTokens: [String] {
         switch self {
+        case .ventura: return ["ventura"]
+        case .monterey: return ["monterey"]
+        case .bigSur: return ["bigsur"]
+        case .catalina: return ["catalina"]
         case .mojave: return ["mojave"]
         case .highSierra: return ["high-sierra", "highsierra"]
         case .sierra: return ["sierra"]
@@ -88,6 +114,10 @@ enum MacOS: CaseIterable {
     /// Major.minor version of OS
     var version: String {
         switch self {
+        case .ventura: return "13"
+        case .monterey: return "12"
+        case .bigSur: return "11"
+        case .catalina: return "10.15"
         case .mojave: return "10.14"
         case .highSierra: return "10.13"
         case .sierra: return "10.12"
@@ -97,6 +127,8 @@ enum MacOS: CaseIterable {
         }
     }
 
+    // https://apps.apple.com/sg/app/macos-catalina/id1466841314?mt=12
+    // https://apps.apple.com/gb/app/macos-mojave/id1398502828?mt=12
     // https://itunes.apple.com/us/app/macos-mojave/id1398502828?mt=12&ign-mpt=uo%3D4
     // https://itunes.apple.com/de/app/macos-sierra/id1127487414?l=en&mt=12
     // https://itunes.apple.com/us/app/macos-high-sierra/id1246284741?ls=1&mt=12
