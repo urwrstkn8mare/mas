@@ -1,3 +1,12 @@
+# The version of `mas` I use on my system
+
+This is just while I wait for the actual `mas` to update with the new commits that you can see are merged into the repositary.
+
+Build from source by following instructions here: [ℹ️ Build from source](README.md#build-from-source).
+
+*Note: for me `xcode-select` was using the command line tools automatically installed by Homebrew before I installed XCode which caused an issue with the scripts. Just run `xcode-select -r` and it will use XCode's SDK. You can also uninstall the automatically installed command line tools by deleting the `/Library/Developer/CommandLineTools` folder.*
+
+
 <h1 align="center"><img src="mas-cli.png" alt="mas-cli" width="450" height="auto"></h1>
 
 # mas-cli
